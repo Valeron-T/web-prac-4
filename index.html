@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap" rel="stylesheet">
+        <!-- CSS only -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <!-- JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="style.css">
+        <script>
+            no_of_attempts = 0;
+            function validate() {
+                temp_user = document.getElementById('txt_uname').value;
+                temp_pwd = document.getElementById('txt_pwd');
+                temp_result = document.getElementById('login-result');
+                temp_attempts = document.getElementById('remaining-attempts');
+                temp_thumbs_str = '<i class="fa fa-thumbs-up"></i>';
+                temp_ban_str = '<i class="fa fa-ban"></i>';
+                if (no_of_attempts < 3) {
+                    if (temp_user=="admin" && temp_pwd.value =="123") {
+                        document.getElementById('page-body').className = 'bg-successful'
+                        temp_result.innerHTML = "Login Successful " + temp_thumbs_str;
+                        temp_result.className = 'input-success';
+                        temp_attempts.innerHTML = "Welcome back " + temp_user + " !";
+                        no_of_attempts = 0;
+                    } else {
+                        document.getElementById('page-body').className = 'bg-error'
+                        temp_result.innerHTML = "Access Denied " + temp_ban_str;
+                        temp_result.className = 'input-error';
+                        no_of_attempts = no_of_attempts + 1;                       
+                        remaining_attempts = 3 - no_of_attempts;
+                        temp_attempts.innerHTML = "Remaining attempts: " + remaining_attempts;
+                    }
+                }
+                else {
+                    alert("Attempts exceeded");
+                }
+            }
+
+            function showpwd() {
+                show_pass = document.getElementById('show_pass').checked;
+                temp_pwd = document.getElementById('txt_pwd');
+                if (show_pass) {
+                    temp_pwd.type = 'text';
+                }
+                else {
+                    temp_pwd.type = 'password';
+                }
+            }
+        </script>
+    </head>
+    <body id="page-body">
+        <h1 id="main-heading">User Login</h1>
+        <form>
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-sm-2 d-flex justify-content-center">
+                        <label>Username</label>
+                    </div>
+                    <div class="col-sm-2 d-flex justify-content-center">
+                        <input type="text" id="txt_uname" placeholder="username">
+                    </div>
+                </div> 
+                <!-- Row 1 ends -->
+                <div class="row justify-content-center">
+                    <div class="col-sm-2  d-flex justify-content-center">
+                        <label>Password</label>
+                    </div>
+                    <div class="col-sm-2  d-flex justify-content-center">
+                        <input type="password" id="txt_pwd" placeholder="password" >
+                    </div>
+                </div>
+                <!-- Row 2 ends -->
+                <div class="row justify-content-center">
+                    <div class="col-sm-2  d-flex justify-content-center">
+                        <label>&nbsp;</label>
+                    </div>
+                    <div class="col-sm-2  d-flex justify-content-center">
+                        <input type="checkbox" id="show_pass" onclick="showpwd();">
+                        <label>&nbsp;Show Password</label>
+                    </div>
+                </div>
+                <!-- Row 3 ends -->
+                <div class="row justify-content-center">
+                    <div class="col-sm-2  d-flex justify-content-center">
+                        <input type="button" onclick='validate();' value="Submit"> 
+                    </div>
+                    <div class="col-sm-2  d-flex justify-content-center">
+                        <input type="reset" id="clear" value="Clear"> 
+                    </div>
+                </div>
+                <!-- Row 4 ends -->
+                <div class="row justify-content-center">
+                    <div class="col-sm-12  d-flex justify-content-center">
+                        <h2 id="login-result">&nbsp;</h2>
+                    </div>
+                </div>
+                <!-- Row 5 ends -->
+                <div class="row justify-content-center">
+                    <div class="col-sm-12  d-flex justify-content-center">
+                        <h5 id="remaining-attempts">&nbsp;</h5>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </body>
+</html>

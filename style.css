@@ -1,0 +1,33 @@
+.input-error {
+    color: red;
+}
+
+.input-success {
+    color: green;
+}
+
+.bg-error {
+    background-color: rgb(255, 173, 173);
+}
+
+.bg-successful {
+    background-color: lightgreen;
+}
+
+#main-heading {
+    text-align: center;
+    padding-top: 2rem;
+}
+
+body {
+    background-color: lightskyblue;
+    font-family: 'Raleway', sans-serif;
+}
+
+.col-sm-2 {
+    padding: 5px;
+}
+
+.row {
+    padding-top: 1rem;
+}
